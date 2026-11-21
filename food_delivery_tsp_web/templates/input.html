@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Enter four place names and a distance matrix for the food delivery route optimizer.">
+  <title>Food Delivery Route Optimizer | Enter places</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar"><div class="topbar-inner">
+    <a class="brand" href="/" aria-label="RouteLab home"><span class="brand-mark">R</span><span>RouteLab</span></a>
+    <nav class="site-nav" aria-label="Main navigation"><a href="/">Overview</a><a class="active" href="/input">Enter places</a><a href="/results">Sample result</a></nav>
+  </div></header>
+  <main class="page-shell">
+    <section class="hero compact-hero">
+      <p class="eyebrow">STEP 1 &amp; 2 OF 3</p>
+      <h1>Name places and enter distances.</h1>
+      <p class="hero-copy">Use four unique names: one depot followed by exactly three delivery places. Type a name or choose a local suggestion.</p>
+    </section>
+    {{ERROR_BLOCK}}
+    <section class="panel input-panel">
+      <div class="section-heading"><div><p class="eyebrow">PLACE NAMES</p><h2>Set the visit locations</h2></div><span class="unit-pill">4 places</span></div>
+      <p class="muted">Suggestions are built in and work offline. You can type any place name; the app does not look up addresses or use a map.</p>
+      <form action="/results" method="post">
+        <div class="place-grid">{{PLACE_INPUTS}}</div>
+        <datalist id="place-suggestions">{{PLACE_SUGGESTIONS}}</datalist>
+        <div class="section-heading matrix-heading"><div><p class="eyebrow">DISTANCE MATRIX</p><h2>Enter pairwise kilometres</h2></div><span class="unit-pill">4 &times; 4</span></div>
+        <p class="muted">Keep these rows and columns in this order: <strong>{{PLACE_ORDER}}</strong>.</p>
+        <label class="field-label" for="matrix">Comma-separated values, one row per line</label>
+        <textarea id="matrix" name="matrix" rows="4" spellcheck="false" required>{{MATRIX_VALUE}}</textarea>
+        <div class="matrix-help">
+          <div><strong>Matrix rules</strong><span>Four values in every row</span><span>Zeroes on the diagonal</span><span>Finite, non-negative, symmetric values</span></div>
+          <div><strong>Sample status</strong><span>The pre-filled distances are illustrative</span><span>Not actual map or Swiggy/Zomato data</span><span>Replace them with your own distances</span></div>
+        </div>
+        <div class="form-actions"><button class="button button-primary" type="submit">Calculate routes <span aria-hidden="true">&rarr;</span></button><button class="button button-secondary" type="reset">Reset fields</button></div>
+      </form>
+    </section>
+  </main>
+  <footer class="footer"><span>RouteLab &middot; Classroom TSP demonstration</span><span>Page 2 of 3 &middot; Input stays on this computer</span></footer>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore research delivery matrices and optimize a closed delivery route using the travelling salesperson problem.">
+  <title>Food Delivery Route Optimizer</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="/" aria-label="RouteLab overview"><span class="brand-mark">R</span><span>RouteLab</span></a>
+    <nav class="site-nav" aria-label="Main navigation">{{NAV}}</nav>
+  </header>
+  <main class="page-shell">
+    <section class="hero overview-hero">
+      <div class="hero-copy">
+        <p class="eyebrow">OPERATIONS RESEARCH · TSP</p>
+        <h1>{{TITLE}}</h1>
+        <p class="hero-subtitle">{{SUBTITLE}}</p>
+        <p class="hero-description">Explore measured distance and travel-time matrices from the project’s nine research dataset versions. Choose a depot and delivery stops, then calculate and independently verify a closed tour using the selected source matrix.</p>
+        <div class="hero-actions"><a class="button" href="/planner">Plan a route <span aria-hidden="true">→</span></a><a class="button button-light" href="/dataset">Explore the data</a></div>
+      </div>
+      <div class="hero-orbit" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><span class="orbit-node node-a">D</span><span class="orbit-node node-b">1</span><span class="orbit-node node-c">2</span><span class="orbit-node node-d">3</span><span class="orbit-line"></span></div>
+    </section>
+
+    <section class="metric-grid" aria-label="Dataset statistics">{{METRICS}}</section>
+
+    <section class="section-block">
+      <div class="section-heading"><div><p class="eyebrow">WORKFLOW</p><h2>From source matrix to route plan</h2></div><p>Each calculation keeps the matrix’s original node identifiers and edge direction.</p></div>
+      <div class="card-grid three">
+        <article class="info-card"><span class="step-number">01</span><h3>Inspect a dataset</h3><p>Choose a day and one of its four distance or travel-time matrices. Review the actual workbook values, dimensions and validation status.</p><a href="/dataset" class="text-link">Open Dataset Explorer <span aria-hidden="true">→</span></a></article>
+        <article class="info-card"><span class="step-number">02</span><h3>Set the route</h3><p>Select a starting depot and a manageable subset of delivery nodes. The planner uses the matching day and scenario matrix.</p><a href="/planner" class="text-link">Open Route Planner <span aria-hidden="true">→</span></a></article>
+        <article class="info-card"><span class="step-number">03</span><h3>Review and export</h3><p>Compare tours where practical, inspect each leg, check independent verification and download route or matrix data as CSV.</p><a href="/analytics" class="text-link">View Analytics &amp; Reports <span aria-hidden="true">→</span></a></article>
+      </div>
+    </section>
+
+    <section class="section-block split-section">
+      <article class="panel">
+        <p class="eyebrow">HOW THE TSP SOLVER WORKS</p><h2>One depot. Every stop. A closed loop.</h2>
+        <p>For a selected depot <em>d</em> and delivery set <em>V</em>, the solver chooses an ordering that minimizes the sum of directed matrix costs along the route, including the return to the depot.</p>
+        <div class="formula">min Σ c(v<sub>i</sub>, v<sub>i+1</sub>) &nbsp; with &nbsp; v<sub>0</sub> = v<sub>n+1</sub> = d</div>
+        <ul class="check-list"><li>Exact enumeration for small instances</li><li>Held–Karp dynamic programming for moderate instances</li><li>Nearest-neighbor with 2-opt for larger selections, labelled heuristic</li></ul>
+      </article>
+      <article class="panel objectives-panel">
+        <p class="eyebrow">PROJECT OBJECTIVES</p><h2>Useful, auditable route planning</h2>
+        <ul class="objective-list"><li><span>01</span><div><strong>Use measured data</strong><p>Read values directly from the nine-day Excel matrix collection.</p></div></li><li><span>02</span><div><strong>Preserve route direction</strong><p>Asymmetric costs remain directed during optimization and reporting.</p></div></li><li><span>03</span><div><strong>Verify every result</strong><p>Recheck stops, depot closure, matrix legs and total cost independently.</p></div></li></ul>
+      </article>
+    </section>
+
+    <section class="technology-strip"><div><p class="eyebrow">TECHNOLOGY</p><h2>Small, local and transparent</h2></div><div class="technology-tags"><span>Python</span><span>openpyxl</span><span>HTML</span><span>CSS</span><span>JavaScript</span><span>Standard library TSP</span></div><p>The server binds to 127.0.0.1 and does not call an external map service. Values and units are displayed as provided by the project workbooks.</p></section>
+  </main>
+  <footer class="site-footer"><span>RouteLab · Food Delivery Route Optimizer</span><span>{{DAY_COUNT}} dataset versions · {{MATRIX_COUNT}} available matrix workbooks</span></footer>
+  <script src="/static/script.js" defer></script>
+</body>
+</html>

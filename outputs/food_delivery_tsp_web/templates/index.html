@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A three-step, login-free food delivery route optimizer using Python's standard library.">
+  <title>Food Delivery Route Optimizer | Overview</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar"><div class="topbar-inner">
+    <a class="brand" href="/" aria-label="RouteLab home"><span class="brand-mark">R</span><span>RouteLab</span></a>
+    <nav class="site-nav" aria-label="Main navigation"><a class="active" href="/">Overview</a><a href="/input">Enter places</a><a href="/results">Sample result</a></nav>
+  </div></header>
+  <main class="page-shell">
+    <section class="hero">
+      <p class="eyebrow">FOOD DELIVERY &bull; TRAVELLING SALESMAN PROBLEM</p>
+      <h1>Plan a delivery loop in three steps.</h1>
+      <p class="hero-copy">Name your places, enter pairwise distances, and compare every distinct round trip. The app runs locally with no login or external map service.</p>
+      <div class="hero-tags"><span>Python standard library</span><span>No login</span><span>Illustrative sample included</span></div>
+    </section>
+    <section class="panel intro-panel">
+      <div class="section-heading"><div><p class="eyebrow">HOW IT WORKS</p><h2>Three pages from input to answer</h2></div><span class="unit-pill">Page 1 of 3</span></div>
+      <div class="workflow-grid">
+        <a class="workflow-card" href="/input"><span class="step-number">01</span><h3>Enter places</h3><p>Type your restaurant and three delivery place names. Suggestions appear as you type; custom names are welcome.</p><span class="workflow-link">Go to place input &rarr;</span></a>
+        <a class="workflow-card" href="/input"><span class="step-number">02</span><h3>Enter distances</h3><p>Add a 4 &times; 4 symmetric matrix in the same order as the place names.</p><span class="workflow-link">Open the input page &rarr;</span></a>
+        <a class="workflow-card" href="/results"><span class="step-number">03</span><h3>Compare routes</h3><p>Review the shortest route, its legs, and all three distinct tours. The sample result is ready to view.</p><span class="workflow-link">View the sample result &rarr;</span></a>
+      </div>
+    </section>
+    <section class="panel sample-overview">
+      <div class="section-heading"><div><p class="eyebrow">DEFAULT PLACE ORDER</p><h2>{{PLACE_ORDER}}</h2></div><span class="unit-pill">Kilometres</span></div>
+      <p class="muted">The pre-filled matrix and displayed sample route are illustrative only. They are not actual map measurements or Swiggy/Zomato data.</p>
+      <div class="form-actions"><a class="button button-primary" href="/input">Start with the place inputs <span aria-hidden="true">&rarr;</span></a><a class="button button-secondary" href="/results">See the sample result</a></div>
+    </section>
+  </main>
+  <footer class="footer"><span>RouteLab &middot; Classroom TSP demonstration</span><span>Page 1 of 3 &middot; Runs locally</span></footer>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Route Planner · RouteLab</title><link rel="stylesheet" href="/static/style.css"><script src="/static/script.js" defer></script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="/"><span class="brand-mark">R</span><span>RouteLab</span></a><nav class="site-nav" aria-label="Main navigation">{{NAV}}</nav></header>
+  <main class="page-shell">
+    <section class="page-heading"><p class="eyebrow">ROUTE PLANNER</p><h1>Build a delivery route</h1><p>Choose a dataset matrix, name the Karnataka starting place and delivery places, then calculate a closed tour.</p></section>
+    <form class="filter-panel" method="get" action="/planner">
+      <label>Dataset day<select name="day">{{DAYS}}</select></label>
+      <label>Optimization scenario<select name="matrix">{{TYPES}}</select></label>
+      <button class="button button-light" type="submit">Load node list</button>
+    </form>
+    <div class="notice-banner" role="status">{{NOTE}}</div>
+    <p class="error-banner" role="alert">{{ERROR}}</p>
+    <form id="route-form" class="planner-panel" method="post" action="/results" data-max-stops="{{MAX_STOPS}}">
+      <input type="hidden" name="day" value="{{DAY}}"><input type="hidden" name="matrix" value="{{MATRIX}}">
+      <datalist id="karnataka-places">{{PLACE_SUGGESTIONS}}</datalist>
+      <div class="planner-grid">
+        <section class="depot-panel"><p class="eyebrow">STARTING POINT</p><h2>Choose the depot</h2><p class="small">The route begins and ends here.</p><label for="depot-select">Depot location<select id="depot-select" name="depot" required{{DISABLED}}>{{DEPOT_OPTIONS}}</select></label><label for="depot-place-name">Karnataka place name<input id="depot-place-name" name="depot_name" type="text" maxlength="80" placeholder="e.g., Bengaluru" list="karnataka-places" required{{DISABLED}}></label><p class="small">The source matrices contain location IDs only. Choose the real place name for this location; suggestions do not map locations automatically.</p></section>
+        <section class="stops-panel">
+          <div class="section-heading"><div><p class="eyebrow">DELIVERY STOPS</p><h2>Select locations to visit</h2></div><span class="count-pill"><strong id="selected-count">0</strong> / {{MAX_STOPS}} selected</span></div>
+          <div class="selection-tools"><label class="search-box"><span class="sr-only">Filter delivery locations</span><input id="node-search" type="search" placeholder="Filter locations or entered place names"></label><button class="button button-light" id="toggle-visible" type="button"{{DISABLED}}>Select visible</button></div>
+          <p class="small">The depot is excluded from delivery stops. Select one or more locations and enter the real place name for each. Location IDs stay internal for matrix lookups.</p>
+          <div class="node-list" id="node-list">{{STOP_OPTIONS}}</div>
+          <div class="selection-preview"><strong>Selected locations</strong><p id="selection-preview" class="muted">No delivery stops selected yet.</p></div>
+          <p id="planner-validation" class="error-banner" role="alert"></p>
+          <button class="button calculate-button" type="submit"{{DISABLED}}>Calculate route <span aria-hidden="true">→</span></button>
+        </section>
+      </div>
+    </form>
+    <section class="algorithm-note"><div class="algorithm-mark">ƒ</div><div><strong>Algorithm selection follows instance size</strong><p>Enumeration is exact through 9 stops. Held–Karp dynamic programming is exact through 15. Larger selections use nearest-neighbor initialization followed by directed 2-opt improvement and are labelled heuristic.</p></div></section>
+  </main>
+  <footer class="site-footer"><span>Route Planner · costs use the selected dataset scenario</span><a href="/dataset">Inspect matrix values <span aria-hidden="true">→</span></a></footer>
+</body>
+</html>

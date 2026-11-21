@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Route Results · RouteLab</title><link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="/"><span class="brand-mark">R</span><span>RouteLab</span></a><nav class="site-nav" aria-label="Main navigation">{{NAV}}</nav></header>
+  <main class="page-shell">
+    <section class="page-heading"><p class="eyebrow">ROUTE RESULTS</p><h1>Optimization outcome</h1><p>Measured edge costs from the selected matrix, assembled into a depot-to-depot tour.</p></section>
+    <p class="error-banner" role="alert">{{ERROR}}</p>
+    <section class="result-hero">
+      <div class="result-topline"><span class="status-pill">{{STATUS}}</span><span class="algorithm-label">{{QUALITY}} · {{ALGORITHM}}</span></div>
+      <div class="result-summary"><div><p class="eyebrow">TOTAL ROUTE COST</p><div class="result-total">{{TOTAL}}<span>{{UNIT}}</span></div><p class="result-context">Day {{DAY}} · {{SCENARIO}} · {{STOPS}} delivery stops</p></div><div class="result-meta"><span>Starting place / depot</span><strong>{{DEPOT}}</strong><span>Computation time</span><strong>{{ELAPSED}} ms</strong></div></div>
+      <div class="route-section"><p class="eyebrow">OPTIMIZED DELIVERY SEQUENCE</p>{{ROUTE}}<p class="small">The entered Karnataka place names are shown here; source location IDs are used internally for matrix lookups.</p></div>
+      <div class="result-actions"><a class="button" href="{{DOWNLOAD}}">Download route CSV <span aria-hidden="true">↓</span></a><a class="button button-light" href="{{ANALYTICS}}">Compare scenario costs</a><a class="text-link" href="/planner">Plan another route</a></div>
+    </section>
+
+    <section class="result-grid">
+      <article class="panel"><div class="section-heading"><div><p class="eyebrow">LEG-BY-LEG COSTS</p><h2>Route ledger</h2></div><span class="unit-note">{{UNIT}}</span></div>
+        <div class="table-scroll"><table><thead><tr><th>Directed leg</th><th>Measured cost</th></tr></thead><tbody>{{LEGS}}</tbody></table></div>
+      </article>
+      <article class="panel verification-panel"><div class="section-heading"><div><p class="eyebrow">INDEPENDENT CHECK</p><h2>Route verification</h2></div></div>
+        <ul class="verification-list">{{CHECKS}}</ul><p class="muted">Each check is recomputed from the selected matrix and returned route.</p>
+      </article>
+    </section>
+
+    <section class="panel"><div class="section-heading"><div><p class="eyebrow">TOUR COMPARISON</p><h2>Ranked closed tours</h2></div><span class="muted">{{NOTES}}</span></div>
+      <p class="small">The shortest tour is ranked first. Reverse tours are collapsed only when the matrix is symmetric; directed alternatives remain distinct.</p>
+      <div class="table-scroll"><table><thead><tr><th>Rank</th><th>Delivery tour</th><th>Total cost</th></tr></thead><tbody>{{ALTERNATIVES}}</tbody></table></div>
+    </section>
+  </main>
+  <footer class="site-footer"><span>Results · {{STATUS}}</span><span>CSV export contains route legs and calculation metadata</span></footer>
+</body>
+</html>

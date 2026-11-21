@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Analytics &amp; Reports · RouteLab</title><link rel="stylesheet" href="/static/style.css"><script src="/static/script.js" defer></script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="/"><span class="brand-mark">R</span><span>RouteLab</span></a><nav class="site-nav" aria-label="Main navigation">{{NAV}}</nav></header>
+  <main class="page-shell">
+    <section class="page-heading"><p class="eyebrow">ANALYTICS &amp; REPORTS</p><h1>Measured data across all days</h1><p>Dataset summaries are calculated from validated Excel matrix values. Route costs appear separately as calculations from a selected tour.</p></section>
+    <div class="analytics-toolbar"><form class="filter-panel compact-filter" method="get" action="/analytics"><label>Selected day<select name="day">{{DAY_OPTIONS}}</select></label><button class="button button-light" type="submit">Show day statistics</button></form><a class="button button-light" href="{{EXPORT}}">Download analytics CSV <span aria-hidden="true">↓</span></a></div>
+
+    <section class="chart-grid">
+      {{DISTANCE_CHART}}
+      {{LIKELY_CHART}}
+      {{SCENARIO_CHART}}
+    </section>
+
+    <section class="panel"><div class="section-heading"><div><p class="eyebrow">SELECTED-DAY DETAILS</p><h2>Matrix statistics</h2></div><span class="small">Off-diagonal measured edges only</span></div>{{SELECTED_STATS}}</section>
+
+    <section class="panel"><div class="section-heading"><div><p class="eyebrow">ROUTE COST COMPARISON</p><h2>Same tour across scenarios</h2></div></div>
+      <p class="small">This compares one calculated tour using each scenario’s actual matrix costs. Distance and time retain their own units.</p>
+      {{ROUTE_COMPARISON}}
+    </section>
+
+    <section class="panel"><div class="section-heading"><div><p class="eyebrow">DAY-WISE SUMMARY</p><h2>Measured matrix averages</h2></div></div>
+      <div class="table-scroll"><table><thead><tr><th>Dataset</th><th>Distance nodes</th><th>Distance average</th><th>Most likely time average</th><th>Optimistic time average</th><th>Pessimistic time average</th></tr></thead><tbody>{{ROWS}}</tbody></table></div>
+      <p class="small">Average values exclude diagonal self-route entries. Travel-time units are not stated and are reported in workbook units. Distance sheets named distance_km state kilometres; the generic Day 1–3 sheet names do not state a unit.</p>
+    </section>
+
+    <section class="data-availability"><div class="availability-icon">i</div><div><p class="eyebrow">ORDER CHARACTERISTICS</p><h2>Additional delivery data</h2><p>{{ORDER_NOTE}}</p></div></section>
+  </main>
+  <footer class="site-footer"><span>Analytics · measured matrices and calculated routes are identified separately</span><a href="/dataset">Return to Dataset Explorer <span aria-hidden="true">→</span></a></footer>
+</body>
+</html>

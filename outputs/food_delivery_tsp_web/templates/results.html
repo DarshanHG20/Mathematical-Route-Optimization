@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Shortest delivery route and manual comparison of three distinct TSP tours.">
+  <title>Food Delivery Route Optimizer | Route result</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="topbar"><div class="topbar-inner">
+    <a class="brand" href="/" aria-label="RouteLab home"><span class="brand-mark">R</span><span>RouteLab</span></a>
+    <nav class="site-nav" aria-label="Main navigation"><a href="/">Overview</a><a href="/input">Enter places</a><a class="active" href="/results">Route result</a></nav>
+  </div></header>
+  <main class="page-shell">
+    <section class="hero compact-hero">
+      <p class="eyebrow">STEP 3 OF 3</p>
+      <h1>Your route comparison.</h1>
+      <p class="hero-copy">The solver checked all delivery orders, removed reverse duplicates for the symmetric matrix, and recalculated the shortest tour.</p>
+      <div class="data-note">{{DATA_NOTE}}</div>
+    </section>
+    {{RESULT_BLOCK}}
+    <section class="panel next-actions">
+      <div><p class="eyebrow">CONTINUE</p><h2>Try another set of places</h2><p class="muted">Change the place names and matrix on the input page. Your entries are used only for this calculation.</p></div>
+      <div class="form-actions"><a class="button button-primary" href="/input">Edit places and distances <span aria-hidden="true">&rarr;</span></a><a class="button button-secondary" href="/">Overview</a></div>
+    </section>
+  </main>
+  <footer class="footer"><span>RouteLab &middot; Classroom TSP demonstration</span><span>Page 3 of 3 &middot; No external map service</span></footer>
+</body>
+</html>

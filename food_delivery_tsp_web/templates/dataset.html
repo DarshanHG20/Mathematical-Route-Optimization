@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Dataset Explorer · RouteLab</title><link rel="stylesheet" href="/static/style.css">
+  <script src="/static/script.js" defer></script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="/"><span class="brand-mark">R</span><span>RouteLab</span></a><nav class="site-nav" aria-label="Main navigation">{{NAV}}</nav></header>
+  <main class="page-shell">
+    <section class="page-heading"><p class="eyebrow">DATASET EXPLORER</p><h1>Inspect the source matrices</h1><p>Each value below comes from the selected Excel workbook. Select a day and matrix type to load its labels, measured values and validation summary.</p></section>
+    <form class="filter-panel" method="get" action="/dataset">
+      <label>Dataset day<select name="day">{{DAYS}}</select></label>
+      <label>Matrix scenario<select name="matrix">{{TYPES}}</select></label>
+      <button class="button" type="submit">Load matrix</button>
+    </form>
+    <p class="unit-note">{{UNIT_NOTE}}</p>
+    <div class="notice-banner" role="status">{{MESSAGE}}</div>
+    <section class="metric-grid compact-metrics" aria-label="Selected matrix statistics">{{STATS}}</section>
+    <div class="toolbar-row"><div><h2>Matrix values</h2><p class="muted">Search by node identifier or a value in the selected matrix.</p></div><div class="toolbar-actions"><label class="search-box"><span class="sr-only">Search matrix</span><input id="matrix-search" type="search" placeholder="Search nodes or values"></label><a class="button button-light" href="{{DOWNLOAD}}">Download CSV <span aria-hidden="true">↓</span></a></div></div>
+    <section class="panel table-panel">{{TABLE}}</section>
+    <section class="panel heatmap-panel"><div class="section-heading"><div><p class="eyebrow">VISUAL SCAN</p><h2>Matrix heatmap</h2></div><span class="muted">Lower cost · higher cost</span></div><div id="heatmap" data-values="{{HEAT}}" role="img" aria-label="Matrix heatmap preview"></div><p class="small">Color intensity compares values within this selected matrix. Numeric costs remain available in the table and CSV.</p></section>
+  </main>
+  <footer class="site-footer"><span>Matrix Explorer · source labels are preserved</span><a href="/planner">Use this dataset in the Route Planner <span aria-hidden="true">→</span></a></footer>
+</body>
+</html>
